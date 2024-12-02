@@ -1,35 +1,79 @@
-def read_file_to_list(filename):
-    data = []
-    try:
-        # Open the file for reading
-        file_data = open(filename, "r")
+# Programmers:  Caitlin Burns, Jordi
+# Course:  CS151, professor Zee
+# Due Date: 11/28
+# Lab Assignment:  11
+# Problem Statement:  translates coded files into english
+# Data In: dictionary file, file name
+# Data Out: new file with translation
+# Credits: read me file and class notes
+# Input Files: morsecode.txt, morse1.txt, morse2.txt, morse3.txt
 
-        # Read all lines from the file into a list
-        data = file_data.readlines()
+import os
 
-        # Close the file after reading
-        file_data.close()
 
-        # Return the list of data
-        return data
-    except:
-        # Ensure the file is closed in case of an error
-        file_data.close()
+# Purpose: allows user to select file to turn into dictionary
+# Parameters: none
+# Return: filename
+def key_selection():
+    filename = input('What file are you using to translate?: ')
+    while filename != 'morsecode.txt':
+        print('Invalid file. Try again.')
+        filename = input('What file are you using to translate?: ')
+    while not os.path.isfile(filename):
+        print('Invalid file. Try again.')
+        filename = input('What file are you using to translate?: ')
+    return filename
 
-        # Print an error message and return an empty list
-        print("Error reading file")
-        return data
-def main ():
-    m_d = {
-
-    }
-    filename = input("Enter file name: ")
-    for line in filename:
-        items = line.split('  ')
-        key = items[1]
-        val = items[0]
+# Purpose: converts file to dictionary
+# Parameters: filename
+# Return: m_d
+def file_to_dictionary(filename):
+    m_d = {}
+    morse_data = open(filename, 'r')
+    for line in morse_data:
+        item = line.strip().split()
+        key = item[1]
+        val = item[0]
         m_d[key] = val
-    print(m_d)
+    morse_data.close()
+    return m_d
+
+
+# Purpose: allows user to select file to be translated
+# Parameters: none
+# Return: input_file
+def inputfile():
+    input_file = input('What file would you like to translate?: \nmorse1.txt\nmorse2.txt\nmorse3.txt\ntype selection here: ')
+    while input_file != 'morse1.txt' and input_file != 'morse2.txt' and input_file != 'morse3.txt':
+        print('Invalid file. Try again')
+        input_file = input('What file would you like to translate?: \nmorse1.txt\nmorse2.txt\nmorse3.txt\ntype selection here: ')
+    return input_file
+
+
+# Purpose: translates file and creates and output file
+# Parameters: inout_file, output_file, and m_d
+# Return: none
+def translate_file(input_file, output_file, m_d):
+    with open(input_file, 'r') as infile, open(output_file, 'w') as outfile:
+        for line in infile:
+            letters = line.strip().split()
+            translated_word = ' '.join(m_d.get(letter) for letter in letters)
+            outfile.write(translated_word + '\n')
+
+
+# Purpose: runs main program
+# Parameters: none
+# Return: none
+def main():
+    print('*' * 70)
+    print('This program translates morse code into english using a dictionary')
+    print('*' * 70)
+    filename = key_selection()
+    m_d = file_to_dictionary(filename)
+    input_file = inputfile()
+    translate_file(input_file, 'translation.txt', m_d)
+    print('Your file has been translated into translation.txt file. Thanks!')
+
 
 main()
 
