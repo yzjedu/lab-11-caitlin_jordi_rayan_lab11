@@ -57,8 +57,8 @@ def translate_file(input_file, output_file, m_d):
     with open(input_file, 'r') as infile, open(output_file, 'w') as outfile:
         for line in infile:
             letters = line.strip().split()
-            translated_word = ' '.join(m_d.get(letter) for letter in letters)
-            outfile.write(translated_word + '\n')
+            translation = ' '.join(m_d.get(letter) for letter in letters)
+            outfile.write(translation + '\n')
 
 
 # Purpose: runs main program
