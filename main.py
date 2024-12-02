@@ -1,4 +1,4 @@
-# Programmers:  Caitlin Burns, Jordi
+# Programmers:  Caitlin Burns, Jordi Campoverde, Rayan Haq
 # Course:  CS151, professor Zee
 # Due Date: 11/28
 # Lab Assignment:  11
