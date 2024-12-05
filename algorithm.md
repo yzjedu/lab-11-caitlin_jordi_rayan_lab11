@@ -53,11 +53,19 @@
 * Parameters: input_file, output_file, m_d
 * Return: none
 * Algorithm:
-1. with open input file for reading as infile and open output file for writing as outfile:
-    1. for line in infile
-       1. letters = line strip and line split
-       2. translation = empty string joined to m_d.get letter for letter in letters
-       3. write translation plus new line
+1. set key selection equal to open key selection for reading
+2. set outfile equal to open output file for writing
+3. for line in key selection
+   1. letters equals line strip and line split
+   2. create empty translation list
+   3. for letter in letters
+      1. if letter in m_d
+         1. append m_d index letter to translation
+      2. otherwise
+         1. append space and new line
+   4. write translation plus new line to the outfile
+   5. close key selection
+   6. close outfile
 
 
 

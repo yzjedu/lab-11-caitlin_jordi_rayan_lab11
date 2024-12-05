@@ -63,7 +63,7 @@ def translate_file(key_selection, output_file, m_d):
             if letter in m_d:
                 translation.append(m_d[letter])
             else:
-                translation.append('')
+                translation.append('' + '\n')
         outfile.write(' '.join(translation) + '\n')
     key_selection.close()
     outfile.close()
