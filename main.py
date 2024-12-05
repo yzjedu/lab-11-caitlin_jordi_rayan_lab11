@@ -51,14 +51,22 @@ def inputfile():
 
 
 # Purpose: translates file and creates and output file
-# Parameters: inout_file, output_file, and m_d
+# Parameters: key_selection, output_file, and m_d
 # Return: none
-def translate_file(input_file, output_file, m_d):
-    with open(input_file, 'r') as infile, open(output_file, 'w') as outfile:
-        for line in infile:
-            letters = line.strip().split()
-            translation = ' '.join(m_d.get(letter) for letter in letters)
-            outfile.write(translation + '\n')
+def translate_file(key_selection, output_file, m_d):
+    key_selection = open(key_selection, 'r')
+    outfile = open(output_file, 'w')
+    for line in key_selection:
+        letters = line.strip().split()
+        translation = []
+        for letter in letters:
+            if letter in m_d:
+                translation.append(m_d[letter])
+            else:
+                translation.append('')
+        outfile.write(' '.join(translation) + '\n')
+    key_selection.close()
+    outfile.close()
 
 
 # Purpose: runs main program
