@@ -71,8 +71,7 @@ def translate_file(input_file, output_file, m_d):
 - `key_selection` and `inputfile` functions does the same thing
 - If you can improve your code and prove to me that you have written the above codes, I can upgrade your grade
 
-### Grade: R
+### Grade: M
 
 ### Participation Grade: S 
-U for jordi and ray
  - If participation grade is unsatisfactory check the `NO` in the documents sections
